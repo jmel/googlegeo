@@ -7,7 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 import psycopg2
 import configparser
-from app.configuration.secrets import user, password
+from app.configuration.secrets import user, password, api_key
 
 Config = configparser.ConfigParser()
 Config.read('app/configuration/config.cfg')
@@ -31,7 +31,7 @@ class Location(Base):
 
     # set limit for a valid separation in meters
     valid_sep = 20
-    g_api_key = Config.get("google_geo", "api_key")
+    g_api_key = api_key
 
     def __init__(self, name='', address='', city='', state='', country='', postal_code='', timezone=None,
                  lat=None, lon=None):
